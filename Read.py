@@ -49,8 +49,10 @@ while continue_reading:
         print('unrolled uid:')
         if str(uid[0]) + "," + str(uid[1]) + "," + str(uid[2]) + "," + str(uid[3]) == '456789231':
             r = requests.post('127.0.0.1', data='1')
+            print(r.status_code)
         if str(uid[0]) + "," + str(uid[1]) + "," + str(uid[2]) + "," + str(uid[3]) == '34534543':
             r = requests.post('127.0.0.1', data='2')
+            print(r.status_code)
 
         # This is the default key for authentication
         key = [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]
