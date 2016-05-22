@@ -44,14 +44,14 @@ while continue_reading:
     if status == MIFAREReader.MI_OK:
 
         # Print UID
+        uid_string = str(uid[0]) + "," + str(uid[1]) + "," + str(uid[2]) + "," + str(uid[3])
 
-        print("Card read UID: " + str(uid[0]) + "," + str(uid[1]) + "," + str(uid[2]) + "," + str(uid[3]))
-        print('unrolled uid:')
-        if str(uid[0]) + "," + str(uid[1]) + "," + str(uid[2]) + "," + str(uid[3]) == '36,173,103,33':
-            r = requests.post('127.0.0.1', data='1')
+        print(uid_string)
+        if uid_string == '36,173,103,33':
+            r = requests.post('http://127.0.0.1:3000/api/events/tag:{}'.format(uid_string))
             print(r.status_code)
-        if str(uid[0]) + "," + str(uid[1]) + "," + str(uid[2]) + "," + str(uid[3]) == '34534543':
-            r = requests.post('127.0.0.1', data='2')
+        if uid_string == '34534543':
+            r = requests.post('http://127.0.0.1:3000/api/events/tag:{}'.format(uid_string))
             print(r.status_code)
 
         # This is the default key for authentication
