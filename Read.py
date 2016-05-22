@@ -47,10 +47,10 @@ while continue_reading:
 
         print("Card read UID: " + str(uid[0]) + "," + str(uid[1]) + "," + str(uid[2]) + "," + str(uid[3]))
         print('unrolled uid:')
-        print(','.join(uid))
-        if (','.join(uid)) == '456789231':
+        print(','.join(str(uid)))
+        if (','.join(str(uid))) == '456789231':
             r = requests.post('127.0.0.1', data='1')
-        if (','.join(uid)) == '34534543':
+        if (','.join(str(uid))) == '34534543':
             r = requests.post('127.0.0.1', data='2')
 
         # This is the default key for authentication
