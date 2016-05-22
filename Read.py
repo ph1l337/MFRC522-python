@@ -47,7 +47,7 @@ while continue_reading:
 
         print("Card read UID: " + str(uid[0]) + "," + str(uid[1]) + "," + str(uid[2]) + "," + str(uid[3]))
         print('unrolled uid:')
-        if str(uid[0]) + "," + str(uid[1]) + "," + str(uid[2]) + "," + str(uid[3]) == '456789231':
+        if str(uid[0]) + "," + str(uid[1]) + "," + str(uid[2]) + "," + str(uid[3]) == '36,173,103,33':
             r = requests.post('127.0.0.1', data='1')
             print(r.status_code)
         if str(uid[0]) + "," + str(uid[1]) + "," + str(uid[2]) + "," + str(uid[3]) == '34534543':
