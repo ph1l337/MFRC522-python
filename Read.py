@@ -48,10 +48,10 @@ while continue_reading:
 
         print(uid_string)
         if uid_string == '36,173,103,33':
-            r = requests.post('http://127.0.0.1:3000/api/events/tag:{}'.format(uid_string))
+            r = requests.post('http://127.0.0.1:3000/api/events/id:{}'.format(uid_string))
             print(r.status_code)
-        if uid_string == '34534543':
-            r = requests.post('http://127.0.0.1:3000/api/events/tag:{}'.format(uid_string))
+        if uid_string == '252,63,62,213':
+            r = requests.post('http://127.0.0.1:3000/api/events/id:{8}'.format(uid_string))
             print(r.status_code)
 
         # This is the default key for authentication
