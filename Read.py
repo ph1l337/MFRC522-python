@@ -27,10 +27,15 @@ MIFAREReader = MFRC522.MFRC522()
 print("Welcome to the MFRC522 data read example")
 print("Press Ctrl-C to stop.")
 
+items = {
+    '252,63,62,213': 8,
+    '36,173,103,33': 9
+}
+
 # This loop keeps checking for chips. If one is near it will get the UID and authenticate
 while continue_reading:
 
-    # Scan for cards    
+    # Scan for cards
     (status, TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
 
     # If a card is found
@@ -44,15 +49,15 @@ while continue_reading:
     if status == MIFAREReader.MI_OK:
 
         # Print UID
-        uid_string = str(uid[0]) + "," + str(uid[1]) + "," + str(uid[2]) + "," + str(uid[3])
+        # uid_string = str(uid[0]) + "," + str(uid[1]) + "," + str(uid[2]) + "," + str(uid[3])
+        uid_string = ','.join(uid)
 
-        print(uid_string)
-        if uid_string == '36,173,103,33':
-            r = requests.post('http://127.0.0.1:3000/api/events/id:{}'.format(uid_string))
-            print(r.status_code)
-        if uid_string == '252,63,62,213':
-            r = requests.post('http://127.0.0.1:3000/api/events/id:{8}'.format(uid_string))
-            print(r.status_code)
+        # print(uid_string)
+        if uid_string in items.keys():
+            r = requests.post('http://127.0.0.1:3000/api/events/tag/{}'.format(items[uid_string]))
+            print('Notified reflector of item {}({}): '.format(uid_string, items[uid_string], r.status_code))
+        else:
+            print('Read unidentified tag: {}'.format(r.status_code))
 
         # This is the default key for authentication
         key = [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]
