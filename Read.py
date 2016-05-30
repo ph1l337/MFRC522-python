@@ -4,6 +4,8 @@
 import RPi.GPIO as GPIO
 import MFRC522
 import signal
+import time
+
 import requests
 
 continue_reading = True
@@ -29,7 +31,8 @@ print("Press Ctrl-C to stop.")
 
 items = {
     '8,247,34,154,71 ': 8,
-    '155,223,112,41,29': 8
+    '155,223,112,41,29': 8,
+    '239,128,120,79,88': 9
 }
 
 # This loop keeps checking for chips. If one is near it will get the UID and authenticate
@@ -74,3 +77,5 @@ while continue_reading:
             MIFAREReader.MFRC522_StopCrypto1()
         else:
             print "Authentication error"
+
+    time.sleep(.2)
