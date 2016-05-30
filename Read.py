@@ -78,4 +78,4 @@ while continue_reading:
         else:
             print "Authentication error"
 
-    time.sleep(.2)
+    time.sleep(.1)
