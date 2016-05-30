@@ -28,8 +28,8 @@ print("Welcome to the MFRC522 data read example")
 print("Press Ctrl-C to stop.")
 
 items = {
-    '252,63,62,213': 8,
-    '36,173,103,33': 9
+    '8,247,34,154,71 ': 8,
+    '155,223,112,41,29': 8
 }
 
 # This loop keeps checking for chips. If one is near it will get the UID and authenticate
@@ -50,14 +50,14 @@ while continue_reading:
 
         # Print UID
         # uid_string = str(uid[0]) + "," + str(uid[1]) + "," + str(uid[2]) + "," + str(uid[3])
-        uid_string = ','.join(uid)
+        uid_string = ','.join([str(x) for x in uid])
 
         # print(uid_string)
         if uid_string in items.keys():
             r = requests.post('http://127.0.0.1:3000/api/events/tag/{}'.format(items[uid_string]))
             print('Notified reflector of item {}({}): '.format(uid_string, items[uid_string], r.status_code))
         else:
-            print('Read unidentified tag: {}'.format(r.status_code))
+            print('Read unidentified tag: {}'.format(uid_string))
 
         # This is the default key for authentication
         key = [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]
